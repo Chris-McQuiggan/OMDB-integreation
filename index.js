@@ -46,7 +46,8 @@ function resolved(result) {
     tr += "<td>|--------------------------- Title ---------------------------|</td><td>|-- Year --|</td><td>|----- Type -----|</td><td>|---- More Detail ----|</td></tr>";
     for (let i = 0; i < result.Search.length; i++) {
         //output to table
-        let btn = '<input class="btn btn-info btn-sm col-6" type="button" id=result' + i + ' value="More Details" onclick = "moreButton(' + result.search + ')" >';
+        console.log(result.Search[i].imdbID);
+        let btn = '<input class="btn btn-info btn-sm col-6" type="button" id=result' + i + " value='More Details' onclick = 'moreButton("+ '"' + result.Search[i].imdbID +'"'+ ")' >";
         tr += "<td>" + result.Search[i].Title + "   </td><td>" + result.Search[i].Year + "   </td><td>" + result.Search[i].Type + "   </td><td>" + btn + "</td></tr>";
     }
     tbody.innerHTML += tr;
@@ -58,7 +59,7 @@ function rejected(reason) {
     console.log(reason);
 }
 
-function moreButton(movie) {
-    sessionStorage.setItem('result', movie);
+function moreButton(imdbID) {
+    sessionStorage.setItem('result', imdbID);
     document.location.href = 'result.html';
 }
