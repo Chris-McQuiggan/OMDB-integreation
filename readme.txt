@@ -1,5 +1,8 @@
+Usefull things to understand the code.
+
 s - Search
 t - title
+i - index
 
 key called poster for image
 
