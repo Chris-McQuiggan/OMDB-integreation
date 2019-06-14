@@ -43,31 +43,22 @@ function resolved(result) {
     node.setAttribute("id", "tbody");
     document.getElementById("results").appendChild(node);
     let tr = "<tr>";
-    tr += "<td>|--------------------------- Title ---------------------------|</td><td>|-- Year --|</td><td>|----- Type -----|</td><td>|------ More Detail ------|</td></tr>";
+    tr += "<td>|--------------------------- Title ---------------------------|</td><td>|-- Year --|</td><td>|----- Type -----|</td><td>|---- More Detail ----|</td></tr>";
     for (let i = 0; i < result.Search.length; i++) {
         //output to table
-        let btn = document.createElement('input');
-        btn.type = "button";
-        btn.className = "btn";
-        btn.value = "More Detail";
-        // btn.onclick = moreClick(result.imdbID);
-        tr += "<td>" + result.Search[i].Title + "   </td><td>" + result.Search[i].Year + "   </td><td>" + result.Search[i].Type + "   </td></tr>";
-        // td.appendChild(btn);
+        let btn = '<input class="btn btn-info btn-sm col-6" type="button" id=result' + i + ' value="More Details" onclick = "moreButton(' + result.search + ')" >';
+        tr += "<td>" + result.Search[i].Title + "   </td><td>" + result.Search[i].Year + "   </td><td>" + result.Search[i].Type + "   </td><td>" + btn + "</td></tr>";
     }
     tbody.innerHTML += tr;
-   
-    // for (let c in result) {
-    //     let output = "Class ID:-- " + JSON.stringify(result[c].classID) + "  Trainer:-- " + JSON.stringify(result[c].trainer);
-    //     let node = document.createElement("div");
-    //     let textnode = document.createTextNode(output);
-    //     node.setAttribute("id", "return" + c);
-    //     node.appendChild(textnode);
-    //     document.getElementById("results").appendChild(node);
-    // }
 }
 
 
 function rejected(reason) {
-    alert("An Error occured. Please check input.\n" + reason);
+    alert("An Error occured. Please check input.");
     console.log(reason);
+}
+
+function moreButton(movie) {
+    sessionStorage.setItem('result', movie);
+    document.location.href = 'result.html';
 }
